@@ -79,11 +79,7 @@ function salvarPerfil() {
               </div>
               <div class="col-3">
                 <label for="">Email: </label>
-                <input 
-                class="form-control"
-                id="emailField"
-                aria-describedby="emailFieldPrepend"
-                type="email" v-model="user.email" required />
+                <input type="email" v-model="user.email" required />
               </div>
             </div>
             <div class="container-col5">
@@ -145,7 +141,7 @@ function salvarPerfil() {
             </div>
             <div class="container-col1">
               <div class="col-1">
-                <p class="textCenter">Biografia</p>
+                <h3 class="textCenter">Biografia</h3>
                 <textarea name="Biography" id="Biography" v-model="user.biography"></textarea>
               </div>
             </div>
@@ -187,21 +183,12 @@ button {
 .container-col1 {
   display: grid;
   grid-template-columns: auto;
-  align-content: center;
-  align-items: center;
-  align-self: center;
 }
 .col-1 {
   grid-column: auto;
-  align-content: center;
-  align-items: center;
-  align-self: center;
 }
 .col-1 textarea {
-  min-width: 30rem;
-  max-width: 70%;
-  min-height: 40px;
-  display: block;
+  display: flex;
   margin-right: auto;
   margin-left: auto;
 }
@@ -210,6 +197,9 @@ button {
   display: grid;
   grid-template-columns: auto auto;
   grid-template-rows: 1fr;
+}
+.col-2{
+  margin: 10px 10px 10px 0;
 }
 .langProg input,
 .hobbies input {
@@ -221,6 +211,8 @@ button {
   grid-template-columns: auto auto auto;
 }
 .col-3 {
+  display: flex;
+  flex-direction: column;
   margin: 10px;
   flex: 0 0 auto;
 }
@@ -230,6 +222,8 @@ button {
   grid-template-columns: auto auto auto auto auto;
 }
 .col-5 {
+  display: flex;
+  flex-direction: column;
   margin: 10px;
 }
 .textCenter {
@@ -238,12 +232,34 @@ button {
   margin: 10px;
 }
 
+button{
+  padding: 1rem;
+  background-color: #85817c;
+  color: #000000;
+  box-shadow: 2px 2px 2px #343434;
+  border: 2px solid #3f3f3f;
+}
+button:hover{
+  background-color: #9b9185;
+  color: #202020;
+  transition-delay: 100ms;
+  transition-duration: 400ms;
+  transition-timing-function: linear;
+}
+
 @media (max-width: 900px) {
-  .container-col1,
   .container-col2,
   .container-col3,
   .container-col5 {
     grid-template-columns: auto auto;
+  }
+}
+@media (max-width: 600px) {
+  .container-col1,
+  .container-col2,
+  .container-col3,
+  .container-col5 {
+    grid-template-columns: auto;
   }
 }
 </style>
