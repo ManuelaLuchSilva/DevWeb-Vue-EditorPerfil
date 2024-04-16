@@ -51,107 +51,109 @@ const states = [
 const mostrarResultado = ref(false)
 
 function salvarPerfil() {
-    mostrarResultado.value = true;
+  if (userPass.value.senha == userPass.value.confSenha) {
+    mostrarResultado.value = true
+  } else {
+    alert('!!Senha incorreta!! \n!!Verifique!!')
+  }
 }
 </script>
 
 <template>
-  <div class="container">
-    <main>
-      <h1>Editor de Perfil</h1>
-      <transition name="form" mode="out-in">
-        <section v-if="mostrarResultado" class="perfil">
-          <p v-for="(value, key) of user" :key="key">{{ key }}: {{ value }}</p>
+  <main>
+    <h1>Editor de Perfil</h1>
+    <transition name="form" mode="out-in">
+      <div v-if="mostrarResultado" class="perfil">
+        <p v-for="(value, key) of user" :key="key">{{ key }}: {{ value }}</p>
 
-          <button type="submit" @click="mostrarResultado = false">Voltar</button>
-        </section>
-        <section v-else class="editPerfil was-validated">
-          <form @submit.prevent="salvarPerfil()" validate>
-            <div class="container-col3">
-              <div class="col-3">
-                <label for="">Nome: </label>
-                <input type="text" v-model="user.name" minlength="3" required />
-              </div>
-
-              <div class="col-3">
-                <label for="">Sobrenome: </label>
-                <input type="text" v-model="user.lastName" minlength="3" required />
-              </div>
-              <div class="col-3">
-                <label for="">Email: </label>
-                <input type="email" v-model="user.email" required />
-              </div>
-            </div>
-            <div class="container-col5">
-              <div class="col-5">
-                <label for="">Cidade: </label>
-                <input type="text" v-model="user.city">
-              </div>
-              <div class="col-5">
-                <label for="">Estado: </label>
-                <select v-model="user.state">
-                  <option selected disabled value="">Selecionar...</option>
-                  <option v-for="state of states" :key="state.uf" :value="state.uf">
-                    {{ state.name }}
-                  </option>
-                </select>
-              </div>
-              <div class="col-5">
-                <label for="">Data de Nascimento: </label>
-                <input type="date" v-model="user.dataNasc">
-              </div>
-              <div class="col-5">
-                <label for="">Senha: </label>
-                <input type="password" v-model="userPass.senha" required />
-              </div>
-
-              <div class="col-5">
-                <label for="">Confirme a senha: </label>
-                <input type="password" v-model="userPass.confSenha" required />
-              </div>
+        <button type="submit" @click="mostrarResultado = false">Voltar</button>
+      </div>
+      <div v-else class="editPerfil">
+        <form @submit.prevent="salvarPerfil()" validate>
+          <div class="container-col3">
+            <div class="col-3">
+              <label for="">Nome: </label>
+              <input type="text" v-model="user.name" minlength="3" required />
             </div>
 
-            <div class="container-col2">
-              <div class="hobbies col-2">
-                <p>Hobbies:</p>
-
-                <input type="checkbox" value="esportes" v-model="user.hobbies">
-                <label>Esportes</label>
-
-                <input type="checkbox" value="musica" v-model="user.hobbies">
-                <label>Musicas</label>
-
-                <input type="checkbox" value="viagem" v-model="user.hobbies">
-                <label>Viajar</label>
-
-                <input type="checkbox" value="leitura" v-model="user.hobbies">
-                <label>Leitura</label>
-              </div>
-              <div class="langProg col-2">
-                <p>Linguagem preferida:</p>
-                <input type="radio" v-model="user.langProg" value="C" id="langC" />
-                <label for="langC">C</label>
-                <input type="radio" v-model="user.langProg" value="Java" id="langJava" />
-                <label for="langJava">Java</label>
-                <input type="radio" v-model="user.langProg" value="Python" id="langPython" />
-                <label for="langPython">Python</label>
-                <input type="radio" v-model="user.langProg" id="langJs" />
-                <label for="langJs">JavaScript</label>
-              </div>
+            <div class="col-3">
+              <label for="">Sobrenome: </label>
+              <input type="text" v-model="user.lastName" minlength="3" required />
             </div>
-            <div class="container-col1">
-              <div class="col-1">
-                <h3 class="textCenter">Biografia</h3>
-                <textarea name="Biography" id="Biography" v-model="user.biography"></textarea>
-              </div>
+            <div class="col-3">
+              <label for="">Email: </label>
+              <input type="email" v-model="user.email" required />
+            </div>
+          </div>
+          <div class="container-col5">
+            <div class="col-5">
+              <label for="">Cidade: </label>
+              <input type="text" v-model="user.city" />
+            </div>
+            <div class="col-5">
+              <label for="">Estado: </label>
+              <select v-model="user.state">
+                <option selected disabled value="">Selecionar...</option>
+                <option v-for="state of states" :key="state.uf" :value="state.uf">
+                  {{ state.name }}
+                </option>
+              </select>
+            </div>
+            <div class="col-5">
+              <label for="">Data de Nascimento: </label>
+              <input type="date" v-model="user.dataNasc" />
+            </div>
+            <div class="col-5">
+              <label for="">Senha: </label>
+              <input type="password" v-model="userPass.senha" required />
             </div>
 
-            <button type="submit">Verificar</button>
-          </form>
-        </section>
-      </transition>
-    </main>
-  </div>
+            <div class="col-5">
+              <label for="">Confirme a senha: </label>
+              <input type="password" v-model="userPass.confSenha" required />
+            </div>
+          </div>
+
+          <div class="container-col2">
+            <div class="hobbies col-2">
+              <p>Hobbies:</p>
+
+              <input type="checkbox" value="esportes" v-model="user.hobbies" />
+              <label>Esportes</label>
+
+              <input type="checkbox" value="musica" v-model="user.hobbies" />
+              <label>Musicas</label>
+
+              <input type="checkbox" value="viagem" v-model="user.hobbies" />
+              <label>Viajar</label>
+
+              <input type="checkbox" value="leitura" v-model="user.hobbies" />
+              <label>Leitura</label>
+            </div>
+            <div class="langProg col-2">
+              <p>Linguagem preferida:</p>
+              <input type="radio" v-model="user.langProg" value="C" id="langC" />
+              <label for="langC">C</label>
+              <input type="radio" v-model="user.langProg" value="Java" id="langJava" />
+              <label for="langJava">Java</label>
+              <input type="radio" v-model="user.langProg" value="Python" id="langPython" />
+              <label for="langPython">Python</label>
+              <input type="radio" v-model="user.langProg" id="langJs" />
+              <label for="langJs">JavaScript</label>
+            </div>
+          </div>
+          <div class="container-col1">
+            <div class="col-1">
+              <h3 class="textCenter">Biografia</h3>
+              <textarea name="Biography" id="Biography" v-model="user.biography"></textarea>
+            </div>
+          </div>
+
+          <button type="submit">Verificar</button>
+        </form>
+      </div>
+    </transition>
+  </main>
 </template>
 
 <style scoped>
@@ -166,18 +168,24 @@ function salvarPerfil() {
 }
 label {
   display: inline-block;
+  color: #977070;
 }
-input {
+input,
+select {
   margin-right: 3rem;
+  background-color: #1e263a;
+  color: #97fecc;
+}
+.options:hover {
+  transition-delay: 100ms;
+  transition-duration: 500ms;
+  transition-timing-function: linear;
+  background-color: #8f866f;
+  color: #0e3e27;
 }
 
 div {
   text-align: left;
-}
-button {
-  margin: 1rem;
-  background-color: #f2f2f2;
-  color: #000000;
 }
 
 .container-col1 {
@@ -191,6 +199,10 @@ button {
   display: flex;
   margin-right: auto;
   margin-left: auto;
+  background-color: #b159ff;
+  color: #fff45c;
+  box-shadow: 2px 2px 1px #bc8f8f;
+  border-radius: 7px;
 }
 
 .container-col2 {
@@ -198,7 +210,7 @@ button {
   grid-template-columns: auto auto;
   grid-template-rows: 1fr;
 }
-.col-2{
+.col-2 {
   margin: 10px 10px 10px 0;
 }
 .langProg input,
@@ -229,22 +241,32 @@ button {
 .textCenter {
   text-align: center;
   font-weight: bolder;
+  font-style: italic;
   margin: 10px;
 }
 
-button{
+button {
+  margin: 2rem;
   padding: 1rem;
-  background-color: #85817c;
-  color: #000000;
-  box-shadow: 2px 2px 2px #343434;
-  border: 2px solid #3f3f3f;
-}
-button:hover{
-  background-color: #9b9185;
-  color: #202020;
+
   transition-delay: 100ms;
   transition-duration: 400ms;
   transition-timing-function: linear;
+  background-color: #707990;
+  color: #5f213f;
+  box-shadow: 2px 2px 2px #343434;
+  border: 2px solid #3f3f3f;
+}
+button:hover {
+  transition-delay: 100ms;
+  transition-duration: 400ms;
+  transition-timing-function: linear;
+  background-color: #8f866f;
+  color: #0e3e27;
+}
+.perfil p {
+  padding: 4px;
+  color: #afafaf;
 }
 
 @media (max-width: 900px) {
