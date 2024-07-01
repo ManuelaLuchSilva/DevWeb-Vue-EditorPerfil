@@ -168,13 +168,13 @@ function salvarPerfil() {
 }
 label {
   display: inline-block;
-  color: #977070;
+  color: #3d2111;
 }
 input,
 select {
   margin-right: 3rem;
-  background-color: #1e263a;
-  color: #97fecc;
+  background-color: #D99B66;
+  color: #3d2111;
 }
 .options:hover {
   transition-delay: 100ms;
@@ -199,9 +199,9 @@ div {
   display: flex;
   margin-right: auto;
   margin-left: auto;
-  background-color: #b159ff;
-  color: #fff45c;
-  box-shadow: 2px 2px 1px #bc8f8f;
+  background-color: #BFA995;
+  color: #3d2111;
+  box-shadow: 2px 2px 1px #a78d76;
   border-radius: 7px;
 }
 
@@ -248,25 +248,30 @@ div {
 button {
   margin: 2rem;
   padding: 1rem;
-
   transition-delay: 100ms;
   transition-duration: 400ms;
   transition-timing-function: linear;
-  background-color: #707990;
-  color: #5f213f;
-  box-shadow: 2px 2px 2px #343434;
-  border: 2px solid #3f3f3f;
+  background-color: #BFA995;
+  color: #3d2111;
+  box-shadow: 2px 2px 2px #a5815e;
+  border: 2px solid #a5815e;
 }
 button:hover {
   transition-delay: 100ms;
   transition-duration: 400ms;
   transition-timing-function: linear;
-  background-color: #8f866f;
-  color: #0e3e27;
+  background-color: #b48d68;
+  color: #3f200e;
 }
 .perfil p {
   padding: 4px;
-  color: #afafaf;
+  color: #401D15;
+}
+h1{
+  color: #401D15;
+}
+p{
+  color: #3d2111;
 }
 
 @media (max-width: 900px) {
